@@ -1,0 +1,4 @@
+$('#login_consumer_result').html('<%= @result %>');
+$('#user_session_token').attr('value', '<%= @result["userContext"]["conversationCredentials"]["sessionToken"] %>'); 
+$('#user_session_token_2').attr('value', '<%= @result["userContext"]["conversationCredentials"]["sessionToken"] %>'); 
+$('#user_session_token_3').attr('value', '<%= @result["userContext"]["conversationCredentials"]["sessionToken"] %>');

@@ -1,0 +1,7 @@
+$('#login_extras').html('');
+
+<% @result["componentList"].each do |field| %>
+  $('#login_extras').append('<%= label_tag field["displayName"] %>');
+  $('#login_extras').append('<%= text_field_tag field["valueIdentifier"] %>');
+  $('#login_extras').append('<br />');
+<% end %>

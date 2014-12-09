@@ -1,0 +1,86 @@
+<h1>Authenticate Cobrand</h1>
+
+<%= form_tag(yodlee_research_authenticate_cobrand_path, method: :post, remote: true) do %>
+  <%= submit_tag("Authenticate Cobrand") %>
+<% end %>
+
+<h3>Response</h3>
+<div id="authenticate_cobrand_result"></div>
+
+<h1>Login Consumer</h1>
+
+<%= form_tag(yodlee_research_login_consumer_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token" %><br/>
+  <%= submit_tag("Login Consumer") %>
+<% end %>
+
+<h3>Response</h3>
+<div id="login_consumer_result"></div>
+
+<h1>Get sites for user</h1>
+
+<%= form_tag(yodlee_research_get_user_accounts_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_5" %><br/>
+
+  <%= label_tag "User session token" %>
+  <%= text_field_tag "user_session_token_3" %><br/>
+  <%= submit_tag("Get user accounts") %>
+<% end %>
+
+<h3>Response</h3>
+
+<div id="user_accounts_response"></div>
+
+<h1>Find Sites</h1>
+
+<%= form_tag(yodlee_research_search_sites_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_2" %><br/>
+
+  <%= label_tag "User session token" %>
+  <%= text_field_tag "user_session_token" %><br/>
+
+  <%= label_tag "Search" %>
+  <%= text_field_tag "site_search_field" %><br/>
+
+  <%= submit_tag("Search sites") %>
+<% end %>
+
+<h3>Response</h3>
+<div id="search_sites_result"></div>
+
+<h1>Get site login form</h1>
+
+<%= form_tag(yodlee_research_get_site_login_form_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_3" %><br/>
+
+  <%= label_tag "Site ID" %>
+  <%= text_field_tag "site_id" %><br/>
+
+  <%= submit_tag("Get site login form") %>
+
+<% end %>
+
+
+<h1>Site Login Form</h1>
+
+<div id="site_login_form">
+  <%= form_tag(yodlee_research_add_site_account_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_4" %><br/>
+
+  <%= label_tag "User session token" %>
+  <%= text_field_tag "user_session_token_2" %><br/>
+
+  <%= label_tag "Site ID" %>
+  <%= text_field_tag "site_id_2" %><br/>
+
+    <div id="login_extras">
+      Waiting for Site ID.
+    </div>
+    <%= submit_tag "Add Site Account" %>
+  <% end %>
+</div>
