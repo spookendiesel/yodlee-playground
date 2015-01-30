@@ -83,4 +83,29 @@
     </div>
     <%= submit_tag "Add Site Account" %>
   <% end %>
+
+<h3>Response</h3>
+<div id="add_site_account_response"></div>
+
+<h1>Update Credentials Form</h1>
+
+<div id="update_credentials_form">
+  <%= form_tag(yodlee_research_update_site_account_credentials_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_4" %><br/>
+
+  <%= label_tag "User session token" %>
+  <%= text_field_tag "user_session_token_2" %><br/>
+
+  <%= label_tag "Site ID" %>
+  <%= text_field_tag "site_id_2" %><br/>
+
+    <div id="login_extras2">
+      Waiting for Site ID.
+    </div>
+    <%= submit_tag "Update Site Account Credentials" %>
+  <% end %>
+
+<h3>Response</h3>
+<div id="update_site_account_credentials_response"></div>
 </div>
