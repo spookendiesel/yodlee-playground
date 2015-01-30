@@ -81,6 +81,7 @@ class YodleeResearchController < ApplicationController
     }
 
     @result = JSON.parse(http_request(site_login_form_url, login_form_params).body)
+    puts @result
     respond_to do |format|
       format.js {}
     end
@@ -90,6 +91,8 @@ class YodleeResearchController < ApplicationController
     session_token = params["session_token_4"]
     user_token = params["user_session_token_2"]
     site_id = params["site_id_2"]
+    username = params["LOGIN1"]
+    password = params["PASSWORD1"]
 
     add_site_params = {
       "cobSessionToken" => session_token,
@@ -98,25 +101,55 @@ class YodleeResearchController < ApplicationController
       "credentialFields.enclosedType" => "com.yodlee.common.FieldInfoSingle",
       "credentialFields[0].displayName" => "Username",
       "credentialFields[0].fieldType.typeName" => "TEXT",
-      "credentialFields[0].name" => "LOGIN",
-      "credentialFields[0].value" => "twbtest.bank1",
-      "credentialFields[0].valueIdentifier" => "LOGIN",
+      "credentialFields[0].name" => "LOGIN1",
+      "credentialFields[0].value" => username,
+      "credentialFields[0].valueIdentifier" => "LOGIN1",
 
       "credentialFields[1].displayName" => "Password",
       "credentialFields[1].fieldType.typeName" => "IF_PASSWORD",
       "credentialFields[1].name" => "PASSWORD1",
-      "credentialFields[1].value" => "bank1",
+      "credentialFields[1].value" => password,
       "credentialFields[1].valueIdentifier" => "PASSWORD1"
     }
 
     @result = JSON.parse(http_request(add_site_url, add_site_params).body)
 
-    require 'pry'; binding.pry
     respond_to do |format|
       format.js {}
     end
   end
 
+  def update_site_account_credentials
+    session_token = params["session_token_4"]
+    user_token = params["user_session_token_2"]
+    site_id = params["site_id_2"]
+    username = params["LOGIN1"]
+    password = params["PASSWORD1"]
+
+    add_site_params = {
+      "cobSessionToken" => session_token,
+      "userSessionToken" => user_token,
+      "siteId" => site_id,
+      "credentialFields.enclosedType" => "com.yodlee.common.FieldInfoSingle",
+      "credentialFields[0].displayName" => "Username",
+      "credentialFields[0].fieldType.typeName" => "TEXT",
+      "credentialFields[0].name" => "LOGIN1",
+      "credentialFields[0].value" => username,
+      "credentialFields[0].valueIdentifier" => "LOGIN1",
+
+      "credentialFields[1].displayName" => "Password",
+      "credentialFields[1].fieldType.typeName" => "IF_PASSWORD",
+      "credentialFields[1].name" => "PASSWORD1",
+      "credentialFields[1].value" => password,
+      "credentialFields[1].valueIdentifier" => "PASSWORD1"
+    }
+
+    @result = JSON.parse(http_request(update_site_account_credentials_url, add_site_params).body)
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
 
   private
 
@@ -168,7 +201,19 @@ class YodleeResearchController < ApplicationController
     URI.parse("#{rest_url}jsonsdk/SiteAccountManagement/addSiteAccount1")
   end
 
+  def update_site_account_credentials_url
+    URI.parse("#{rest_url}jsonsdk/SiteAccountManagement/updateSiteAccountCredentials")
+  end
+
   def get_user_accounts_url
     URI.parse("#{rest_url}jsonsdk/SiteAccountManagement/getSiteAccounts")
+  end
+
+  def get_site_account_mfa_questions_and_answers_url
+    URI.parse("#{rest_url}jsonsdk/SiteAccountManagement/getSiteAccountMfaQuestionsAndAnswers")
+  end
+
+  def get_mfa_response_for_site_url
+    URI.parse("#{rest_url}jsonsdk/SiteAccountManagement/getMFAResponseForSite")
   end
 end
