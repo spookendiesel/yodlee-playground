@@ -109,3 +109,23 @@
 <h3>Response</h3>
 <div id="update_site_account_credentials_response"></div>
 </div>
+
+<h1>Get Site Info Form</h1>
+
+<div id="get_site_info_form">
+  <%= form_tag(yodlee_research_get_site_info_path, method: :post, remote: true) do %>
+  <%= label_tag "Session token" %>
+  <%= text_field_tag "session_token_6" %><br/>
+
+  <%= label_tag "Site ID" %>
+  <%= text_field_tag "site_id_3" %><br/>
+
+  <div id="login_extras3">
+    Waiting for Site ID.
+  </div>
+  <%= submit_tag "Get Site Info" %>
+<% end %>
+
+<h3>Response</h3>
+<div id="get_site_info_response"></div>
+</div>

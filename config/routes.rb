@@ -12,5 +12,6 @@ YodleeResearch::Application.routes.draw do
   post 'yodlee_research/add_site_account' => 'yodlee_research#add_site_account'
   post 'yodlee_research/get_user_accounts' => 'yodlee_research#get_user_accounts'
   post 'yodlee_research/update_site_account_credentials' => 'yodlee_research#update_site_account_credentials'
+  post 'yodlee_research/get_site_info' => 'yodlee_research#get_site_info'
 
 end

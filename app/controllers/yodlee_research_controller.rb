@@ -70,6 +70,27 @@ class YodleeResearchController < ApplicationController
     end
   end
 
+  def get_site_info
+    session_token = params["session_token_6"]
+    site_id = params["site_id_3"]
+
+    search_params = {
+      "cobSessionToken" => session_token,
+      "siteFilter.reqSpecifier" => 128,
+      "siteFilter.siteId" => site_id
+    }
+
+    image_bytes = JSON.parse(http_request(get_site_info_url, search_params).body)["defaultSiteLogo"]["bytes"]
+    image_string = image_bytes.pack('c*')
+    base64_image = [image_string].pack('m0')
+
+    @result = "<img alt='' src='data:image/jpeg;base64,#{base64_image}'/>"
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   def get_site_login_form
 
     session_token = params["session_token_3"]
@@ -162,19 +183,20 @@ class YodleeResearchController < ApplicationController
   end
 
   def user_username
-    "sbMemtwbaker1"
+    "sbMemsbCobJMatthewman1"
   end
 
   def user_password
-    "sbMemtwbaker1#123"
+    "sbMemsbCobJMatthewman1#123"
   end
 
   def cobrand_username
-    "sbCobtwbaker"
+    "sbCobsbCobJMatthewman"
   end
 
   def cobrand_password
-    "2c5c5015-0861-43f5-b81f-7b69d943051a"
+    #"2c5c5015-0861-43f5-b81f-7b69d943051A"
+    "0db1a34f-7963-4550-b69b-2aeda113f9c4"
   end
 
   def rest_url
@@ -191,6 +213,10 @@ class YodleeResearchController < ApplicationController
 
   def search_site_url
     URI.parse("#{rest_url}jsonsdk/SiteTraversal/searchSite")
+  end
+
+  def get_site_info_url
+    URI.parse("#{rest_url}jsonsdk/SiteTraversal/getSiteInfo")
   end
 
   def site_login_form_url 
